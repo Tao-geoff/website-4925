@@ -1,0 +1,820 @@
+// 代码已包含 CSS：使用 TailwindCSS , 安装 TailwindCSS 后方可看到布局样式效果
+
+import React from 'react';
+import * as echarts from 'echarts';
+import { useEffect } from 'react';
+
+const App: React.FC = () => {
+  useEffect(() => {
+    const chartDom = document.getElementById('sales-chart');
+    if (chartDom) {
+      const myChart = echarts.init(chartDom);
+      const option = {
+        animation: false,
+        xAxis: {
+          type: 'category',
+          data: ['1月', '2月', '3月', '4月', '5月', '6月']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: [150, 230, 224, 218, 135, 147],
+            type: 'line',
+            smooth: true
+          }
+        ]
+      };
+      myChart.setOption(option);
+    }
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      {/* 导航栏 */}
+      <nav className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center space-x-8">
+            <img src="https://ai-public.mastergo.com/ai/img_res/36f63d7fc69627f9a9276d40567f9317.jpg" 
+                 alt="logo" 
+                 className="h-8" />
+            <div className="hidden md:flex space-x-8">
+              <a href="#" className="text-gray-600 hover:text-blue-600">首页</a>
+              <a href="#" className="text-gray-600 hover:text-blue-600">产品</a>
+              <a href="#" className="text-gray-600 hover:text-blue-600">解决方案</a>
+              <a href="#" className="text-gray-600 hover:text-blue-600">关于我们</a>
+            </div>
+          </div>
+          <button className="!rounded-button whitespace-nowrap px-6 py-2 bg-blue-600 text-white hover:bg-blue-700">
+            联系我们
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero区域 */}
+      <div className="relative h-[600px] overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://ai-public.mastergo.com/ai/img_res/831f6545724d1298d4eceadf805b2f6f.jpg"
+            alt="hero background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
+          <div className="max-w-2xl text-white">
+            <h1 className="text-5xl font-bold mb-6">智能制造 引领未来</h1>
+            <p className="text-xl mb-8">专注于高端智能制造解决方案，为全球客户提供创新科技与卓越品质</p>
+            <button className="!rounded-button whitespace-nowrap px-8 py-3 bg-blue-600 text-white hover:bg-blue-700">
+              了解更多
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* 核心优势 */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center p-8">
+              <i className="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
+              <h3 className="text-xl font-semibold mb-4">品质保证</h3>
+              <p className="text-gray-600">严格的质量管理体系，确保每一件产品都达到最高标准</p>
+            </div>
+            <div className="text-center p-8">
+              <i className="fas fa-cogs text-4xl text-blue-600 mb-4"></i>
+              <h3 className="text-xl font-semibold mb-4">技术创新</h3>
+              <p className="text-gray-600">持续投入研发，引领行业技术发展方向</p>
+            </div>
+            <div className="text-center p-8">
+              <i className="fas fa-headset text-4xl text-blue-600 mb-4"></i>
+              <h3 className="text-xl font-semibold mb-4">专业服务</h3>
+              <p className="text-gray-600">24小时专业团队支持，为客户提供全方位解决方案</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 关于我们 */}
+      <div className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-6">关于我们</h2>
+              <p className="text-gray-600 mb-6">
+                创立于 2005 年，是一家专注于智能制造解决方案的高科技企业。我们致力于为客户提供最优质的产品和服务，通过持续创新和技术突破，已成为行业领导者。
+              </p>
+              <div id="sales-chart" className="h-64 w-full"></div>
+            </div>
+            <div className="relative h-96 overflow-hidden rounded-lg shadow-xl">
+              <img 
+                src="https://ai-public.mastergo.com/ai/img_res/8a5531c4b2fefdb2546f44ed9861d282.jpg"
+                alt="about us"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 产品展示 */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">热门产品</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              {
+                title: '智能机器人',
+                image: 'https://ai-public.mastergo.com/ai/img_res/061e878b863bf2c859b372c8e0cb115e.jpg'
+              },
+              {
+                title: '自动化生产线',
+                image: 'https://ai-public.mastergo.com/ai/img_res/77d4fd10893f16bd2cb249f05dc6ab04.jpg'
+              },
+              {
+                title: '智能控制系统',
+                image: 'https://ai-public.mastergo.com/ai/img_res/1b9afa406db1c1a4a63524329dab9f96.jpg'
+              },
+              {
+                title: '数据分析平台',
+                image: 'https://ai-public.mastergo.com/ai/img_res/d90357c47a2d5471ca19a5c18339e530.jpg'
+              }
+            ].map((product, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-4">{product.title}</h3>
+                  <button className="!rounded-button whitespace-nowrap text-blue-600 hover:text-blue-700">
+                    了解更多 <i className="fas fa-arrow-right ml-2"></i>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 客户评价 */}
+      <div className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">客户评价</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+              <p className="text-gray-600 mb-6">
+                "通过采用智能制造解决方案，我们的生产效率提升了 35%，产品质量也得到了显著提升。"
+              </p>
+              <div className="flex items-center">
+                <img 
+                  src="https://ai-public.mastergo.com/ai/img_res/3b8343deaea29851891461fd838ef0a7.jpg"
+                  alt="客户头像"
+                  className="w-12 h-12 rounded-full mr-4"
+                />
+                <div>
+                  <p className="font-semibold">林总经理</p>
+                  <p className="text-gray-500">远大集团</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+              <p className="text-gray-600 mb-6">
+                "专业的技术团队和完善的售后服务体系，让我们对未来的合作充满信心。"
+              </p>
+              <div className="flex items-center">
+                <img 
+                  src="https://ai-public.mastergo.com/ai/img_res/ec39cd0be2182d3d7f31af15b87393d8.jpg"
+                  alt="客户头像"
+                  className="w-12 h-12 rounded-full mr-4"
+                />
+                <div>
+                  <p className="font-semibold">张总监</p>
+                  <p className="text-gray-500">创新科技</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 页脚 */}
+      <footer className="bg-gray-900 text-gray-300 py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <img 
+                src="https://ai-public.mastergo.com/ai/img_res/b1f5346410d26442323bbc7729b1669b.jpg"
+                alt="logo"
+                className="h-8 mb-6"
+              />
+              <p className="text-sm">
+                致力于为全球客户提供领先的智能制造解决方案
+              </p>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">产品服务</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-white">智能制造</a></li>
+                <li><a href="#" className="hover:text-white">自动化设备</a></li>
+                <li><a href="#" className="hover:text-white">工业软件</a></li>
+                <li><a href="#" className="hover:text-white">技术支持</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">关于我们</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-white">公司简介</a></li>
+                <li><a href="#" className="hover:text-white">发展历程</a></li>
+                <li><a href="#" className="hover:text-white">新闻动态</a></li>
+                <li><a href="#" className="hover:text-white">加入我们</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">联系我们</h4>
+              <ul className="space-y-2">
+                <li><i className="fas fa-phone-alt mr-2"></i>400-888-8888</li>
+                <li><i className="fas fa-envelope mr-2"></i>contact@example.com</li>
+                <li><i className="fas fa-map-marker-alt mr-2"></i>上海市浦东新区科技园区</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-12 pt-8 text-sm text-center">
+            <p>© 2024 智能制造. 保留所有权利.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
+
+<think>
+让我整理一下需求：
+1. 编写一篇关于将项目部署到腾讯云服务器的说明文档（使用Markdown格式）
+2. 检查项目中是否有重复代码
+3. 指出可以删除的不必要代码、文件或文件夹
+
+为了完成这个任务，我需要：
+1. 首先了解项目结构和当前状态
+2. 检查有无重复或冗余代码
+3. 撰写腾讯云部署指南
+4. 给出清理项目的建议
+
+我先来查看项目结构以便了解整个项目的组成部分。
+</think>
+
+首先，我来查看项目的整体结构：
+
+Ran tool
+现在我检查一下my-app目录的结构：
+
+Ran tool
+让我检查一下根目录的package.json和my-app的package.json：
+
+Read file: package.json
+
+Read file: my-app/package.json
+让我检查一下是否存在重复文件或者结构：
+
+Ran tool
+
+Ran tool
+检查一下公共目录也有没有重复：
+
+Ran tool
+
+Ran tool
+基于以上调查，我现在可以编写一份关于将项目部署到腾讯云服务器的说明文档，并提出删除冗余文件的建议。
+
+```markdown:腾讯云部署指南.md
+# 贸易制造业网站 - 腾讯云部署指南
+
+本文档提供了将贸易制造业网站项目部署到腾讯云服务器的详细步骤。按照以下指南操作，您将能够成功地将网站部署并运行在腾讯云服务器上。
+
+## 目录
+
+1. [项目准备](#项目准备)
+2. [服务器准备](#服务器准备)
+3. [部署过程](#部署过程)
+4. [配置Nginx](#配置nginx)
+5. [配置HTTPS](#配置https)
+6. [自动化部署](#自动化部署)
+7. [问题排查](#问题排查)
+8. [项目优化建议](#项目优化建议)
+
+## 项目准备
+
+在部署之前，需要对项目进行一些准备工作：
+
+### 1. 清理项目结构
+
+当前项目存在一些冗余文件和目录，建议进行清理：
+
+- 删除根目录下的 `app` 和 `public` 文件夹，因为实际项目代码在 `my-app` 目录中
+- 删除根目录下的 `package.json` 和 `package-lock.json`，使用 `my-app` 中的依赖配置
+- 删除 `图片.txt` 和 `进度.txt` 等临时文件
+
+### 2. 构建生产版本
+
+在部署到服务器前，需要构建项目的生产版本：
+
+```bash
+# 进入项目目录
+cd my-app
+
+# 安装依赖
+npm install
+
+# 构建生产版本
+npm run build
+```
+
+构建完成后，会在 `.next` 目录中生成部署所需的文件。
+
+### 3. 测试生产版本
+
+在本地测试生产构建，确保一切正常：
+
+```bash
+npm run start
+```
+
+访问 http://localhost:3000 确认网站功能正常。
+
+## 服务器准备
+
+### 1. 购买腾讯云服务器
+
+1. 登录[腾讯云控制台](https://console.cloud.tencent.com/)
+2. 购买云服务器CVM，推荐配置：
+   - 操作系统：CentOS 7.6 或 Ubuntu 20.04 LTS
+   - 配置：2核4GB内存及以上
+   - 带宽：5Mbps及以上
+
+### 2. 安装必要软件
+
+连接到服务器后，安装必要的软件：
+
+```bash
+# CentOS系统
+sudo yum update -y
+sudo yum install -y git nodejs npm nginx
+
+# 或Ubuntu系统
+sudo apt update
+sudo apt install -y git nodejs npm nginx
+```
+
+### 3. 安装Node.js最新LTS版本
+
+使用NVM安装合适版本的Node.js：
+
+```bash
+# 安装NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+source ~/.bashrc
+
+# 安装Node.js v18 LTS
+nvm install 18
+nvm use 18
+```
+
+## 部署过程
+
+### 1. 克隆代码到服务器
+
+```bash
+# 创建项目目录
+mkdir -p /var/www/valentijapan
+cd /var/www/valentijapan
+
+# 克隆代码仓库
+git clone <项目仓库URL> .
+cd my-app
+```
+
+### 2. 安装依赖并构建
+
+```bash
+# 安装生产依赖
+npm ci --production
+
+# 构建项目
+npm run build
+```
+
+### 3. 使用PM2管理Node.js应用
+
+```bash
+# 安装PM2
+npm install -g pm2
+
+# 启动应用
+pm2 start npm --name "valentijapan" -- start
+
+# 设置开机自启
+pm2 startup
+pm2 save
+```
+
+## 配置Nginx
+
+### 1. 创建Nginx配置文件
+
+```bash
+sudo nano /etc/nginx/conf.d/valentijapan.conf
+```
+
+添加以下配置：
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com www.your-domain.com;
+    
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+    
+    # 静态资源缓存
+    location /_next/static/ {
+        alias /var/www/valentijapan/my-app/.next/static/;
+        expires 30d;
+        access_log off;
+    }
+    
+    location /images/ {
+        alias /var/www/valentijapan/my-app/public/images/;
+        expires 30d;
+        access_log off;
+    }
+}
+```
+
+### 2. 验证并重启Nginx
+
+```bash
+# 检查配置是否有效
+sudo nginx -t
+
+# 重启Nginx
+sudo systemctl restart nginx
+```
+
+## 配置HTTPS
+
+### 1. 安装Certbot
+
+```bash
+# CentOS系统
+sudo yum install -y epel-release
+sudo yum install -y certbot python3-certbot-nginx
+
+# 或Ubuntu系统
+sudo apt install -y certbot python3-certbot-nginx
+```
+
+### 2. 获取SSL证书
+
+```bash
+sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+```
+
+按照提示完成配置，Certbot会自动修改Nginx配置以启用HTTPS。
+
+### 3. 自动续期证书
+
+```bash
+# 测试自动续期
+sudo certbot renew --dry-run
+
+# Certbot会自动添加定时任务进行证书续期
+```
+
+## 自动化部署
+
+可以使用GitHub Actions或GitLab CI/CD进行自动化部署：
+
+### GitHub Actions示例
+
+在项目根目录创建 `.github/workflows/deploy.yml`：
+
+```yaml
+name: Deploy to Tencent Cloud
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: cd my-app && npm ci
+        
+      - name: Build project
+        run: cd my-app && npm run build
+        
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/valentijapan
+            git pull
+            cd my-app
+            npm ci --production
+            npm run build
+            pm2 restart valentijapan
+```
+
+## 问题排查
+
+### 1. 网站无法访问
+
+检查以下几点：
+
+- 确认PM2进程运行状态：`pm2 status`
+- 检查Node.js应用日志：`pm2 logs valentijapan`
+- 确认Nginx配置正确：`sudo nginx -t`
+- 检查防火墙是否开放80/443端口：`sudo firewall-cmd --list-all`
+
+### 2. 图片或静态资源加载失败
+
+- 检查Nginx配置中的路径是否正确
+- 确认文件权限：`sudo chown -R nginx:nginx /var/www/valentijapan`
+- 检查日志：`sudo tail -f /var/log/nginx/error.log`
+
+### 3. 性能问题
+
+- 考虑使用腾讯云对象存储(COS)存储图片等静态资源
+- 配置Nginx缓存和压缩
+- 使用腾讯云CDN加速静态资源
+
+## 项目优化建议
+
+### 1. 代码优化
+
+- 删除冗余代码，特别是`home.json`中重复的测试数据
+- 将`popularProducts`集合中的重复数据项删除
+- 使用图片压缩工具优化图片资源
+
+### 2. 功能优化
+
+- 添加网站地图以提升SEO
+- 实现图片懒加载提高页面加载速度
+- 考虑使用腾讯云内容分发网络(CDN)加速静态资源
+
+### 3. 安全优化
+
+- 配置腾讯云Web应用防火墙(WAF)
+- 定期更新Node.js和依赖包
+- 设置适当的内容安全策略(CSP)
+
+---
+
+按照本指南完成部署后，您的贸易制造业网站应该已经成功运行在腾讯云服务器上，并通过HTTPS提供安全访问。如有任何问题，请参考[腾讯云官方文档](https://cloud.tencent.com/document/product)或联系技术支持。
+```
+现在我将检查项目中的重复代码，并给出具体的优化建议：
+
+Read file: my-app/public/data/home.json
+根据检查，我发现以下需要优化的内容：
+
+```markdown:项目优化建议.md
+# 贸易制造业网站 - 项目优化建议
+
+在检查项目代码后，发现了一些可以优化的部分。以下是详细的优化建议，包括需要删除的冗余代码和文件：
+
+## 需要删除的文件和目录
+
+1. **根目录下的冗余文件夹**:
+   - `/app` 目录 - 所有功能已在 `/my-app/app` 中实现
+   - `/public` 目录 - 所有静态资源已在 `/my-app/public` 中
+   - 根目录下的 `package.json` 和 `package-lock.json` - 实际项目依赖在 `/my-app` 中
+   - 临时文件如 `图片.txt` 和 `进度.txt`
+
+2. **重复的SVG文件**:
+   - 检查 `/my-app/public` 目录中是否有未使用的SVG文件，如 `vercel.svg`
+
+## 代码重复和优化
+
+### 1. 数据文件中的重复内容
+
+**`my-app/public/data/home.json`**
+- `popularProducts` 数组中的第4项和第5项完全相同，应删除其一:
+  ```json
+  {
+    "id": 4,
+    "name": "汽车电子控制单元",
+    "description": "高性能汽车ECU，提供精确的发动机控制。",
+    "image": "/images/products/car-ecu.jpg",
+    "link": "/product/car-ecu"
+  },
+  {
+    "id": 5,
+    "name": "汽车电子控制单元",
+    "description": "高性能汽车ECU，提供精确的发动机控制。",
+    "image": "/images/products/car-ecu.jpg",
+    "link": "/product/car-ecu"
+  }
+  ```
+
+- `testimonials` 数组中的第2项和第3项完全相同，应删除其一:
+  ```json
+  {
+    "id": 2,
+    "text": "作为长期合作伙伴，我们对贸易制造业 的创新能力和产品质量非常满意。他们总是能够满足我们的需求。",
+    "author": "华某某",
+    "position": "XYZ企业CEO",
+    "image": "/images/testimonials/client2.jpg"
+  },
+  {
+    "id": 3,
+    "text": "作为长期合作伙伴，我们对贸易制造业 的创新能力和产品质量非常满意。他们总是能够满足我们的需求。",
+    "author": "华某某",
+    "position": "XYZ企业CEO",
+    "image": "/images/testimonials/client2.jpg"
+  }
+  ```
+
+### 2. 组件代码优化
+
+**重复的样式定义**:
+- 检查全局CSS文件和组件内的内联样式，消除重复定义
+- 考虑提取通用样式到Tailwind组件或自定义类
+
+**状态管理逻辑**:
+- 检查各页面组件中是否有重复的状态管理逻辑，可提取到自定义Hook
+
+## 性能优化建议
+
+### 1. 图片优化
+
+- 使用现代图片格式如WebP替代JPEG/PNG
+- 在图片加载时实现渐进式加载或模糊占位符
+- 按需加载技术，如使用Intersection Observer API实现懒加载
+
+### 2. 代码分割
+
+- 实现路由级别的代码分割，减少首次加载的JavaScript大小
+- 使用React.lazy()和Suspense动态导入较大的组件
+
+### 3. 服务端渲染优化
+
+- 确保所有页面都正确使用Next.js的SSR或SSG功能
+- 考虑使用ISR(增量静态再生)来平衡构建时间和内容更新频率
+
+## 可访问性改进
+
+- 添加适当的ARIA标签
+- 确保所有交互元素都可以通过键盘访问
+- 实现适当的颜色对比度
+- 添加适当的alt文本到所有图片
+
+## 其他建议
+
+- 更新依赖包到最新版本
+- 整合错误监控系统如Sentry
+- 添加用户行为分析如Google Analytics或百度统计
+- 实现适当的SSR缓存策略
+
+---
+
+实施以上优化建议将有助于提高网站性能、用户体验和可维护性。建议按照优先级逐步实施这些改进。
+```
+现在，让我为项目创建一个简化版的部署脚本，以便于在腾讯云上快速部署：
+
+```shell script:deploy.sh
+#!/bin/bash
+
+# 贸易制造业网站 - 腾讯云部署脚本
+# 使用方法: ./deploy.sh [environment]
+# environment可选值: dev, prod (默认为dev)
+
+# 设置错误时立即退出
+set -e
+
+# 获取环境参数
+ENV=${1:-dev}
+echo "部署环境: $ENV"
+
+# 配置变量
+APP_NAME="valentijapan"
+APP_DIR="/var/www/$APP_NAME"
+BACKUP_DIR="$APP_DIR/backups"
+TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+
+# 确保备份目录存在
+mkdir -p $BACKUP_DIR
+
+# 备份当前版本
+echo "备份当前版本..."
+if [ -d "$APP_DIR/my-app" ]; then
+    tar -czf "$BACKUP_DIR/$APP_NAME-$TIMESTAMP.tar.gz" -C $APP_DIR/my-app .
+    echo "备份完成: $BACKUP_DIR/$APP_NAME-$TIMESTAMP.tar.gz"
+fi
+
+# 更新代码
+echo "更新代码..."
+cd $APP_DIR
+git pull origin main
+
+# 安装依赖
+echo "安装依赖..."
+cd $APP_DIR/my-app
+npm ci --production
+
+# 构建项目
+echo "构建项目..."
+if [ "$ENV" == "prod" ]; then
+    npm run build
+else
+    # 开发环境可能需要不同的构建命令或环境变量
+    NODE_ENV=development npm run build
+fi
+
+# 重启应用
+echo "重启应用..."
+if pm2 list | grep -q "$APP_NAME"; then
+    pm2 restart $APP_NAME
+else
+    pm2 start npm --name "$APP_NAME" -- start
+fi
+
+# 保存PM2配置
+pm2 save
+
+# 清理旧备份（保留最近10个）
+echo "清理旧备份..."
+ls -t $BACKUP_DIR/*.tar.gz | tail -n +11 | xargs -r rm
+
+# Nginx配置检查
+echo "检查Nginx配置..."
+sudo nginx -t
+if [ $? -eq 0 ]; then
+    echo "Nginx配置正确，重新加载Nginx..."
+    sudo systemctl reload nginx
+else
+    echo "Nginx配置有误，请检查配置文件"
+    exit 1
+fi
+
+echo "部署完成！应用已经在 http://localhost:3000 运行"
+echo "如果配置了域名，请访问您的域名查看网站"
+
+# 执行健康检查
+echo "执行健康检查..."
+sleep 5
+if curl -s http://localhost:3000 > /dev/null; then
+    echo "健康检查通过 ✓"
+else
+    echo "警告: 健康检查失败，请检查应用日志"
+    pm2 logs $APP_NAME --lines 20
+fi
+```
+我已经为您准备了腾讯云部署所需的三个重要文件：
+
+1. **腾讯云部署指南.md** - 详细的部署步骤和最佳实践
+2. **项目优化建议.md** - 项目代码优化和冗余删除建议
+3. **deploy.sh** - 自动化部署脚本
+
+我发现项目中存在一些重复代码和不必要的文件结构，主要包括：
+
+1. **重复的文件结构**：根目录下的 `app` 和 `public` 目录与 `my-app` 中的内容重复，应该保留 `my-app` 中的内容。
+
+2. **重复的JSON数据**：在 `home.json` 中发现了重复的产品和评价数据：
+   - 产品列表中ID为4和ID为5的项目完全相同
+   - 客户评价中ID为2和ID为3的项目完全相同
+
+3. **冗余文件**：根目录下的 `package.json` 和 `package-lock.json` 应该使用 `my-app` 目录中的版本。
+
+要使项目更加健壮并方便部署，我建议：
+
+1. **清理项目结构**：删除根目录下不必要的文件和目录，使项目结构清晰
+2. **优化数据文件**：移除JSON数据中的重复内容
+3. **使用现代化部署流程**：利用PM2和Nginx实现可靠的生产环境部署
+4. **实现自动化**：使用提供的部署脚本实现自动化部署和回滚
+
+腾讯云部署指南中详细介绍了服务器配置、Nginx设置、HTTPS配置和自动化部署流程。项目优化建议中提供了更多关于代码优化和性能提升的具体建议。
+
+这些文档和脚本将帮助您轻松地将项目部署到腾讯云服务器，并保持代码的整洁和高效。如有任何问题，可以随时参考这些指南。
